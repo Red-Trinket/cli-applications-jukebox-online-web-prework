@@ -94,17 +94,6 @@ end	  help
       end
     end
 end 
- 64  lib/jukebox.rb 
-@@ -1,3 +1,5 @@
-require 'pry'
-
-songs = [	songs = [
-  "Phoenix - 1901",	  "Phoenix - 1901",
-  "Tokyo Police Club - Wait Up",	  "Tokyo Police Club - Wait Up",
-@@ -10,3 +12,65 @@
-  "Amos Lee - Keep It Loose, Keep It Tight"	  "Amos Lee - Keep It Loose, Keep It Tight"
-]	]
-
 
 def help
   puts "I accept the following commands:"

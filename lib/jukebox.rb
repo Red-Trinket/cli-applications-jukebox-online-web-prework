@@ -14,65 +14,157 @@ songs = [
 
 
 def help
-  help = <<-HELP
-I accept the following commands:
-- help : displays this help message
-- list : displays a list of songs you can play
-- play : lets you choose a song to play
-- exit : exits this program
-HELP
+  #this method should be the same as in jukebox.rb	  #this method should be the same as in jukebox.rb
 
-  puts help
+  puts "I accept the following commands:"
+  puts "- help : displays this help message"
+  puts "- list : displays a list of songs you can play"
+  puts "- play : lets you choose a song to play"
+  puts "- exit : exits this program"
+end	end
+
+
+
+
+def list(my_songs)	def list(my_songs)
+  #this method is different! Collect the keys of the my_songs hash and 	  #this method is different! Collect the keys of the my_songs hash and
+  #list the songs by name	  #list the songs by name
+  my_songs.each { |song, location|
+    puts song
+    }
+end	end
+
+
+
+def play(my_songs)	def play(my_songs)
+  #this method is slightly different!	  #this method is slightly different!
+  #you should still ask the user for input and collect their song choice	  #you should still ask the user for input and collect their song choice
+@@ -33,13 +37,51 @@ def play(my_songs)
+  #if it isn't, tell them their choice is invalid	  #if it isn't, tell them their choice is invalid
+  #if it is, play the song using the system 'open <file path>' syntax	  #if it is, play the song using the system 'open <file path>' syntax
+  #get the file path of the song by looking it up in the my_songs hash	  #get the file path of the song by looking it up in the my_songs hash
+
+  puts "Please enter a song name:"
+  user_response = gets.chomp
+  my_songs.each { |song, location|
+    if user_response == song
+      system 'open ' + location
+    end
+      }
+  if user_response == "list"
+    list(my_songs)
+    play(my_songs)
+  else
+    puts "Invalid input, please try again:"
+    play(my_songs)
+  end
+end	end
+
+
+def exit_jukebox	def exit_jukebox
+  #this method is the same as in jukebox.rb	  #this method is the same as in jukebox.rb
+  puts "Goodbye"
+end	end
+
+
+def run(my_songs)	def run(my_songs)
+  #this method is the same as in jukebox.rb	  #this method is the same as in jukebox.rb
+end	  help
+  puts "Please enter a command:"
+  user_response = gets.chomp
+  while user_response != "exit"
+    case user_response
+      when "help"
+        help
+        puts "Please enter a command:"
+        user_response = gets.chomp
+      when "list"
+        list(my_songs)
+        puts "Please enter a command:"
+        user_response = gets.chomp
+      when "play"
+        play(my_songs)
+        puts "Please enter a command:"
+        user_response = gets.chomp
+      when "exit"
+        exit_jukebox
+      else
+        puts "Invalid input, please try again:"
+        user_response = gets.chomp
+      end
+    end
+end 
+ 64  lib/jukebox.rb 
+@@ -1,3 +1,5 @@
+require 'pry'
+
+songs = [	songs = [
+  "Phoenix - 1901",	  "Phoenix - 1901",
+  "Tokyo Police Club - Wait Up",	  "Tokyo Police Club - Wait Up",
+@@ -10,3 +12,65 @@
+  "Amos Lee - Keep It Loose, Keep It Tight"	  "Amos Lee - Keep It Loose, Keep It Tight"
+]	]
+
+
+def help
+  puts "I accept the following commands:"
+  puts "- help : displays this help message"
+  puts "- list : displays a list of songs you can play"
+  puts "- play : lets you choose a song to play"
+  puts "- exit : exits this program"
 end
 
-help 
-
-def list(songs) 
-  songs.each_with_index { |item, index|
-    puts "#{index+1}. #{item}" }
-end 
-
-list(songs)
+def list(songs)
+  songs.each_with_index { |song, index|
+    puts (index + 1).to_s + ". " + song
+    }
+end
 
 def play(songs)
   puts "Please enter a song name or number:"
-  user_response = gets.downcase.chomp 
-  
-  if (1..9).to_a.include?(user_response.to_i)
-    puts "Playing #{songs[user_response.to_i - 1]}"
-    elsif songs.include?(user_response)
-    puts "Playing #{user_response}"
-  else 
+  user_response = gets.chomp
+  output = ""
+  songs.each_with_index { |song, index|
+    if user_response == (index + 1).to_s || user_response == song
+      output = "Playing #{song}"
+    end
+  }
+  if output.include?("Playing")
+    puts output
+  elsif user_response == "list"
+    list(songs)
+    play(songs)
+  else
     puts "Invalid input, please try again"
-  end 
-end 
-
-play(songs)
+  end
+end
 
 def exit_jukebox
   puts "Goodbye"
-end 
+end
 
 def run(songs)
-  #help
-  command = "" 
-  while command  
+  help
   puts "Please enter a command:"
-  command = gets.downcase.strip  
-  case command 
-    when 'list'
-      list(songs)
-      when 'play'
+  user_response = gets.chomp
+  while user_response != "exit"
+    case user_response
+      when "help"
+        help
+        puts "Please enter a command:"
+        user_response = gets.chomp
+      when "list"
         list(songs)
+        puts "Please enter a command:"
+        user_response = gets.chomp
+      when "play"
         play(songs)
-      when 'help'
-        help 
-      when 'exit'
-        exit_jukebox
-        break 
-      else 
-        help 
-      end 
-    end 
-  end 
-  run(songs)
+        puts "Please enter a command:"
+        user_response = gets.chomp
+      else
+        puts "Invalid input, please try again"
+        user_response = gets.chomp
+    end
+  end
+  exit_jukebox
+end 

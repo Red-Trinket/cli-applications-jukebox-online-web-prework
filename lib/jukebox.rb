@@ -36,7 +36,7 @@ end
 
 
 
-def play(my_songs)	def play(my_songs)
+def play(my_songs)	
   #this method is slightly different!	  #this method is slightly different!
   #you should still ask the user for input and collect their song choice	  #you should still ask the user for input and collect their song choice
  #-33,13 +37,51  def play(my_songs)

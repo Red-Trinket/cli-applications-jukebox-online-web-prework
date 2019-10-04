@@ -39,7 +39,7 @@ end	end
 def play(my_songs)	def play(my_songs)
   #this method is slightly different!	  #this method is slightly different!
   #you should still ask the user for input and collect their song choice	  #you should still ask the user for input and collect their song choice
-@@ -33,13 +37,51 @@ def play(my_songs)
+ #-33,13 +37,51  def play(my_songs)
   #if it isn't, tell them their choice is invalid	  #if it isn't, tell them their choice is invalid
   #if it is, play the song using the system 'open <file path>' syntax	  #if it is, play the song using the system 'open <file path>' syntax
   #get the file path of the song by looking it up in the my_songs hash	  #get the file path of the song by looking it up in the my_songs hash

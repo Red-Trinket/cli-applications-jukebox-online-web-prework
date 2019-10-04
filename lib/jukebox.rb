@@ -75,4 +75,4 @@ def run(songs)
       end 
     end 
   end 
-  run(song
+  run(songs)

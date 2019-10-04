@@ -32,7 +32,7 @@ def list(my_songs)	def list(my_songs)
   my_songs.each { |song, location|
     puts song
     }
-end	end
+end	
 
 
 
@@ -58,18 +58,15 @@ def play(my_songs)	def play(my_songs)
     puts "Invalid input, please try again:"
     play(my_songs)
   end
-end	end
+end	
 
-
-def exit_jukebox	def exit_jukebox
+def exit_jukebox
   #this method is the same as in jukebox.rb	  #this method is the same as in jukebox.rb
   puts "Goodbye"
 end	
 
-
-def run(my_songs)	def run(my_songs)
+def run(my_songs)
   #this method is the same as in jukebox.rb	  #this method is the same as in jukebox.rb
-end	  help
   puts "Please enter a command:"
   user_response = gets.chomp
   while user_response != "exit"
